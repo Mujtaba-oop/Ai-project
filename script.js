@@ -45,11 +45,12 @@ const GenerateApiResponse = async (userMessage) => {
     const jsonResponse = await response.json();   
     const contentText = jsonResponse.candidates[0].content.parts[0].text;  
     modifiend=convertToHTML(contentText);
-    // Create a new message element for the API response  
+    // Create a new message element for the API response
+    console.log(modifiend)  
     const responseHtml = `  
         <div class="message-content">  
             <img src="artificial.jpg"  alt="">  
-           <div class="try"${modifiend}</div>   
+           <div class="try">${modifiend}</div>   
         </div>  
     `;  
 
