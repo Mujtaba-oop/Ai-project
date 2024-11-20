@@ -1,5 +1,6 @@
 const form = document.querySelector(".typing-form");  
-const userInput = document.getElementById("user-input");  
+const userInput = document.getElementById("user-input"); 
+const header = document.querySelector(".header"); 
 const chatList = document.querySelector(".chat-list"); // Assuming there's a chat list to append messages  
 const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyDd3MdT4UziOcCXU7OO4fJvkE4okMDZ_aI";  
 
@@ -70,10 +71,10 @@ const createMessageElement = (content, className) => {
 };  
 
 // Event listener for form submission  
-form.addEventListener("submit", (e) => {  
+form.addEventListener("submit", (e) => {
+    header.style.display = "none";  
     e.preventDefault();  
-    handleOutgoingChat();  
-
+    handleOutgoingChat(); 
 
 });
 
@@ -139,4 +140,20 @@ document.getElementById('toggle-light-mode').addEventListener('click', function 
     console.log("hello")
     document.body.classList.toggle('light-mode');
     
-});   
+});  
+// **********************************************DEleet*********************************
+const deleteButton = document.getElementById("delete-all");
+
+// Event listener for the delete button
+deleteButton.addEventListener("click", () => {
+    // Clear the chat list
+    chatList.innerHTML = "";
+
+    // Optionally reset the user input field
+    userInput.value = "";
+
+    console.log("Chat history cleared!");
+});
+
+
+
