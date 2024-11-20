@@ -72,7 +72,7 @@ color: var(--text-color);
     padding: 8px;
     margin: 0 auto;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    gap: 8px; /* Space between input and send button */
+    gap: 1rem; /* Space between input and send button */
 }
 
 .typing-input {
@@ -192,7 +192,7 @@ color: var(--text-color);
     margin: 1rem auto ;
     align-items: flex-start;
     background-color:var(--secondary-bg);
-    box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 2px 1px 1px rgba(150, 150, 150, 0.2);
     border-radius: 1rem;
    overflow: auto;
     padding: 1rem;
