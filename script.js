@@ -1,80 +1,81 @@
-const form = document.querySelector(".typing-form");  
-const userInput = document.getElementById("user-input"); 
-const header = document.querySelector(".header"); 
+const form = document.querySelector(".typing-form");
+const userInput = document.getElementById("user-input");
+const header = document.querySelector(".header");
 const chatList = document.querySelector(".chat-list"); // Assuming there's a chat list to append messages  
-const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyDd3MdT4UziOcCXU7OO4fJvkE4okMDZ_aI";  
+const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyDd3MdT4UziOcCXU7OO4fJvkE4okMDZ_aI";
 
 // Function to handle outgoing chat  
-const handleOutgoingChat = () => {  
-    const userMessage = userInput.value.trim();  
-    if (!userMessage) return; // Exit if there is no message  
+const handleOutgoingChat = () => {
+    const userMessage = userInput.value.trim();
+    if (!userMessage) return; // Exit if there is no message 
+    modifiend = convertToHTML(userMessage); 
 
     const html = `  
         <div class="message-content">  
-            <img src="vector.jpg"  alt="">  
-            <p class="text">${userMessage}</p>  
+            <img src="./images/vector.jpg"  alt="">  
+           <div class="try">${modifiend}</div>   
         </div>  
-    `;  
+    `;
 
-    const outgoingMessageDiv = createMessageElement(html, "outgoing");  
-    chatList.appendChild(outgoingMessageDiv);  
+    const outgoingMessageDiv = createMessageElement(html, "outgoing");
+    chatList.appendChild(outgoingMessageDiv);
 
     userInput.value = ""; // Clear input field  
     chatList.scrollTop = chatList.scrollHeight; // Scroll to the bottom   
-    GenerateApiResponse(userMessage);   
-};  
+    GenerateApiResponse(userMessage);
+};
 
 // Function to generate API response  
-const GenerateApiResponse = async (userMessage) => {  
-    const response = await fetch(API_URL, {  
-        method: "POST",  
-        headers: { "Content-Type": "application/json" },  
-        body: JSON.stringify({  
-            contents: [{  
-                role: "user",  
-                parts: [{ text: userMessage }]  
-            }]  
-        })  
-    });  
+const GenerateApiResponse = async (userMessage) => {
+    const response = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            contents: [{
+                role: "user",
+                parts: [{ text: userMessage }]
+            }]
+        })
+    });
 
     // Check if the response was successful  
-    if (!response.ok) {  
-        console.error('Network response was not ok', response.statusText);  
+    if (!response.ok) {
+        console.error('Network response was not ok', response.statusText);
         return; // Exit the function in case of error  
-    }   
-    
-    const jsonResponse = await response.json();  
-    console.log(jsonResponse) 
-    const contentText = jsonResponse.candidates[0].content.parts[0].text;  
-    modifiend=convertToHTML(contentText);
+    }
+
+    const jsonResponse = await response.json();
+    console.log(jsonResponse)
+    const contentText = jsonResponse.candidates[0].content.parts[0].text;
+    modifiend = convertToHTML(contentText);
     // Create a new message element for the API response
-    console.log(modifiend)  
+    console.log(modifiend)
     const responseHtml = `  
         <div class="message-content">  
-            <img src="artificial.jpg"  alt="">  
+            <img src="./images/artificial.jpg"  alt="">  
            <div class="try">${modifiend}</div>   
         </div>  
-    `;  
+    `;
 
-    const incomingMessageDiv = createMessageElement(responseHtml, "incoming");  
-    chatList.appendChild(incomingMessageDiv);  
-    
+    const incomingMessageDiv = createMessageElement(responseHtml, "incoming");
+    chatList.appendChild(incomingMessageDiv);
+
     chatList.scrollTop = chatList.scrollHeight; // Scroll to the bottom after appending  
-};  
+};
 
 // Function to create message element  
-const createMessageElement = (content, className) => {  
-    const div = document.createElement("div");  
-    div.classList.add("message", className);  
-    div.innerHTML = content;  
-    return div;  
-};  
+const createMessageElement = (content, className) => {
+    const div = document.createElement("div");
+    div.classList.add("message", className);
+    div.innerHTML = content;
+    return div;
+};
 
 // Event listener for form submission  
 form.addEventListener("submit", (e) => {
-    header.style.display = "none";  
-    e.preventDefault();  
-    handleOutgoingChat(); 
+    header.style.display = "none";
+    e.preventDefault();
+    handleOutgoingChat();
 
 });
 
@@ -139,8 +140,8 @@ document.getElementById('toggle-light-mode').addEventListener('click', function 
     // Toggle a 'light-mode' class on the body
     console.log("hello")
     document.body.classList.toggle('light-mode');
-    
-});  
+
+});
 // **********************************************DEleet*********************************
 const deleteButton = document.getElementById("delete-all");
 

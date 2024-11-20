@@ -8,7 +8,7 @@
 }
 :root {
     --text-color: #b9b9b9;
-    --placeholder-color: #A6A6A6;
+    --placeholder-color: #424242;
     --primary-bg: #242424;
     --secondary-bg: #373737;
     --secondary-hover: #555555;
@@ -16,7 +16,7 @@
 }
 body.light-mode {
     --text-color: #6c6c6c;
-    --placeholder-color: #ffffff;
+    --placeholder-color: #aba6a6;
     --primary-bg: #ffffff;
     --secondary-bg: #efefef;
     --secondary-hover: #b4aeae;
@@ -26,7 +26,7 @@ body {
     background-color: var(--primary-bg);
     color: var(--text-color);
 }
-/* ***************************header********************************* */
+/* ***************************************Header Area*********************************  */
  
 .header {  
     display:flex;
@@ -38,7 +38,7 @@ body {
    
 }  
 .header h2 {  
-    font-size:100px;
+    font-size:80px;
     background-clip: text;  
     background: linear-gradient(to right, #4285f4, #d95770);  
     -webkit-background-clip: text;  
@@ -48,8 +48,20 @@ body {
 .header h4  {  
 color: var(--text-color);
 font-size:40px;
+text-align: center;
+
 }  
-/* Typing Area Styling */
+.header img  {  
+border-radius: 50%;
+width: 300px;
+
+}
+.image{
+    display: flex;
+    justify-content: center;
+}  
+
+/* ***************************************Typing Area*********************************  */
 .typing-area {
     position: fixed;
     bottom: 0;
@@ -71,8 +83,8 @@ font-size:40px;
     background-color: var(--primary-bg);
     border-radius: 30px;
     padding: 8px;
-    margin: 0 auto;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin: 1rem auto;
+    box-shadow: 1px 1px 3px 1px var(--placeholder-color);
     gap: 1rem; /* Space between input and send button */
 }
 
@@ -135,50 +147,10 @@ font-size:40px;
 /* Disclaimer Styling */
 .disc {
     font-size: 0.8rem;
-    color: var(--placeholder-color);
-    margin-top: 10px;
+    color: var(--text-color);
+    margin-top: 1px;
     text-align: center;
 }
-
-/* ----------------------------------- */
-/* MOBILE RESPONSIVE STYLING */
-/* ----------------------------------- */
-@media (max-width: 768px) {
-    .header h2 {  
-        font-size:50px;
-       
-    }  
-    .header h4  {  
-    color: var(--text-color);
-    font-size:20px;
-    } 
-    .input-wrapper {
-        width: 350px;
-        flex-wrap: nowrap; /* Ensure input and button stay on the same line */
-    }
-
-    .typing-input {
-        font-size: 0.9rem;
-        padding: 10px 12px;
-    }
-
-    .icon {
-        height: 40px;
-        width: 40px;
-        font-size: 20px;
-    }
-
-    .action-buttons {
-        margin-left: 0;
-        gap: 5px;
-    }
-
-    .disc {
-        font-size: 0.7rem;
-        margin-top: 8px;
-    }
-}
-
 
 /* **************************************chat-list****************************** */
 .chat-list{
@@ -220,8 +192,11 @@ font-size:40px;
   
 }
 .try{
-    padding: 0 1rem;
+    padding:1rem;
 }
+/* ----------------------------------- */
+/* MOBILE RESPONSIVE STYLING */
+/* ----------------------------------- */
 @media (max-width: 480px) {
     .message-content{
         max-width: 350px;
@@ -248,5 +223,38 @@ font-size:40px;
 
     .disc {
         font-size: 0.65rem;
+    }
+    .header h2 {  
+        font-size:50px;
+       
+    }  
+    .header h4  {  
+    color: var(--text-color);
+    font-size:20px;
+    } 
+    .input-wrapper {
+        width: 350px;
+        flex-wrap: nowrap; /* Ensure input and button stay on the same line */
+    }
+
+    .typing-input {
+        font-size: 0.9rem;
+        padding: 10px 12px;
+    }
+
+    .icon {
+        height: 40px;
+        width: 40px;
+        font-size: 20px;
+    }
+
+    .action-buttons {
+        margin-left: 0;
+        gap: 5px;
+    }
+
+    .disc {
+        font-size: 0.7rem;
+        margin-top: 8px;
     }
 }
