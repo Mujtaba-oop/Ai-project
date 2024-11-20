@@ -7,13 +7,21 @@
     font-family: "Poppins", sans-serif;
 }
 :root {
-    --text-color: #E3E3E3;
+    --text-color: #d1d1d1;
     --placeholder-color: #A6A6A6;
     --primary-bg: #242424;
-    --secondary-bg: #383838;
-    --secondary-hover: #444;
+    --secondary-bg: #373737;
+    --secondary-hover: #555555;
     --accent-color: linear-gradient(to right, #4285f4, #d96570);
 }
+body.light-mode {
+    --text-color: #000000;
+    --placeholder-color: #ffffff;
+    --primary-bg: #ffffff;
+    --secondary-bg: #efefef;
+    --secondary-hover: #b4aeae;
+    --accent-color: linear-gradient(to right, #4285f4, #d96570);
+  }
 body {
     background-color: var(--primary-bg);
     color: var(--text-color);
@@ -38,7 +46,7 @@ body {
    
 }  
 .header h4  {  
-color: #595353;
+color: var(--text-color);
 }  
 /* Typing Area Styling */
 .typing-area {
@@ -59,7 +67,7 @@ color: #595353;
     align-items: center;
     width: 100%;
     max-width: 700px;
-    background-color: var(--secondary-bg);
+    background-color: var(--primary-bg);
     border-radius: 30px;
     padding: 8px;
     margin: 0 auto;
@@ -71,7 +79,7 @@ color: #595353;
     flex: 1;
     border: none;
     outline: none;
-    background: transparent;
+    background-color: var(--primary-bg);
     color: var(--text-color);
     font-size: 1rem;
     padding: 0 10px;
@@ -79,7 +87,7 @@ color: #595353;
 }
 
 .typing-input::placeholder {
-    color: var(--placeholder-color);
+    color: var(--primary-bg);
 }
 
 .icon {
@@ -100,6 +108,8 @@ color: #595353;
 .send{
     transform: scale(0);
     transition: transform 0.2s ease;
+    background-color: var(--secondary-bg);
+    color: var(--text-color);
 }
 .typing-input:valid ~ .send {
     transform: scale(1);
@@ -126,61 +136,7 @@ color: #595353;
     text-align: center;
 }
 
-/* ----------------------------------- */
-/* MOBILE RESPONSIVE STYLING */
-/* ----------------------------------- */
-@media (max-width: 768px) {
-    .input-wrapper {
-        flex-wrap: nowrap; /* Ensure input and button stay on the same line */
-    }
 
-    .typing-input {
-        font-size: 0.9rem;
-        padding: 10px 12px;
-    }
-
-    .icon {
-        height: 40px;
-        width: 40px;
-        font-size: 20px;
-    }
-
-    .action-buttons {
-        margin-left: 0;
-        gap: 5px;
-    }
-
-    .disc {
-        font-size: 0.7rem;
-        margin-top: 8px;
-    }
-}
-
-@media (max-width: 480px) {
-    .typing-area {
-        padding: 8px 10px;
-    }
-
-    .input-wrapper {
-        padding: 8px;
-        gap: 5px; /* Reduce spacing for smaller screens */
-    }
-
-    .typing-input {
-        font-size: 0.8rem;
-        padding: 8px 10px;
-    }
-
-    .icon {
-        height: 36px;
-        width: 36px;
-        font-size: 18px;
-    }
-
-    .disc {
-        font-size: 0.65rem;
-    }
-}
 /* **************************************chat-list****************************** */
 .chat-list{
     margin-bottom: 10rem;
@@ -205,9 +161,9 @@ color: #595353;
     max-width: 700px;
     margin: 1rem auto ;
     align-items: flex-start;
-    background-color: #626262;
+    background-color:var(--secondary-bg);
     border-radius: 1rem;
-
+     overflow: auto;
     padding: 1rem;
 }
 .message-content img{
@@ -220,5 +176,34 @@ color: #595353;
   
 }
 .try{
-    padding: 0 1rem;
+    padding:1rem;
+}
+@media (max-width: 768px) {
+    .message-content{
+        max-width: 350px; 
+    }
+    .input-wrapper {
+        flex-wrap: nowrap; /* Ensure input and button stay on the same line */
+    }
+
+    .typing-input {
+        font-size: 0.9rem;
+        padding: 10px 12px;
+    }
+
+    .icon {
+        height: 40px;
+        width: 40px;
+        font-size: 20px;
+    }
+
+    .action-buttons {
+        margin-left: 0;
+        gap: 5px;
+    }
+
+    .disc {
+        font-size: 0.7rem;
+        margin-top: 8px;
+    }
 }

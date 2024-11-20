@@ -42,7 +42,8 @@ const GenerateApiResponse = async (userMessage) => {
         return; // Exit the function in case of error  
     }   
     
-    const jsonResponse = await response.json();   
+    const jsonResponse = await response.json();  
+    console.log(jsonResponse) 
     const contentText = jsonResponse.candidates[0].content.parts[0].text;  
     modifiend=convertToHTML(contentText);
     // Create a new message element for the API response
@@ -132,3 +133,10 @@ const escapeHTML = (str) => {
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#39;");
 };
+// *********************************************************Toggle*********************************************************************
+document.getElementById('toggle-light-mode').addEventListener('click', function () {
+    // Toggle a 'light-mode' class on the body
+    console.log("hello")
+    document.body.classList.toggle('light-mode');
+    
+});   
