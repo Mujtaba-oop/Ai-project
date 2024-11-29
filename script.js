@@ -1,9 +1,39 @@
-const form = document.querySelector(".typing-form");
+
 const userInput = document.getElementById("user-input");
 const header = document.querySelector(".header");
-const chatList = document.querySelector(".chat-list"); // Assuming there's a chat list to append messages  
+const chatList = document.querySelector(".chat-list");   
 const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyDd3MdT4UziOcCXU7OO4fJvkE4okMDZ_aI";
 
+// **************************************************typing-effect*****************************************
+const typeText = (element, text, speed) => {
+    
+    let index = 0;
+    const interval = setInterval(() => {
+        element.textContent += text[index];
+        index++;
+        if (index === text.length) clearInterval(interval);
+    }, speed);
+};
+const title = document.querySelector(".title");
+const subtitle = document.querySelector(".subtitle");
+title.innerHTML=""
+subtitle.innerHTML=""
+// Apply the typing effect
+typeText(title, "Hello, Chat AI there", 40);
+setTimeout(() => {
+    typeText(subtitle, "How can I help you today?", 40);
+}, 800);
+
+
+
+// Event listener for form submission  
+const form = document.querySelector(".typing-form");
+form.addEventListener("submit", (e) => {
+    header.style.display = "none";
+    e.preventDefault();
+    handleOutgoingChat();
+
+});
 // Function to handle outgoing chat  
 const handleOutgoingChat = () => {
     const userMessage = userInput.value.trim();
@@ -21,7 +51,10 @@ const handleOutgoingChat = () => {
     chatList.appendChild(outgoingMessageDiv);
 
     userInput.value = ""; // Clear input field  
-    chatList.scrollTop = chatList.scrollHeight; // Scroll to the bottom   
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+    });
     GenerateApiResponse(userMessage);
 };
 
@@ -37,11 +70,10 @@ const GenerateApiResponse = async (userMessage) => {
             }]
         })
     });
-
     // Check if the response was successful  
     if (!response.ok) {
         console.error('Network response was not ok', response.statusText);
-        return; // Exit the function in case of error  
+        return; 
     }
 
     const jsonResponse = await response.json();
@@ -59,8 +91,10 @@ const GenerateApiResponse = async (userMessage) => {
 
     const incomingMessageDiv = createMessageElement(responseHtml, "incoming");
     chatList.appendChild(incomingMessageDiv);
-
-    chatList.scrollTop = chatList.scrollHeight; // Scroll to the bottom after appending  
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+    });
 };
 
 // Function to create message element  
@@ -71,13 +105,6 @@ const createMessageElement = (content, className) => {
     return div;
 };
 
-// Event listener for form submission  
-form.addEventListener("submit", (e) => {
-    header.style.display = "none";
-    e.preventDefault();
-    handleOutgoingChat();
-
-});
 
 // conversion************************
 const convertToHTML = (text) => {
@@ -136,25 +163,23 @@ const escapeHTML = (str) => {
         .replace(/'/g, "&#39;");
 };
 // *********************************************************Toggle*********************************************************************
-document.getElementById('toggle-light-mode').addEventListener('click', function () {
-    // Toggle a 'light-mode' class on the body
-    console.log("hello")
+const dark=document.getElementById('toggle-light-mode')
+dark.addEventListener('click', function () {
     document.body.classList.toggle('light-mode');
 
 });
+
 // **********************************************DEleet*********************************
 const deleteButton = document.getElementById("delete-all");
 
 // Event listener for the delete button
 deleteButton.addEventListener("click", () => {
     // Clear the chat list
-    chatList.innerHTML = "";
-
+    chatList.innerHTML = " ";
     // Optionally reset the user input field
-    userInput.value = "";
-
-    console.log("Chat history cleared!");
+    userInput.value = " ";
 });
+
 
 
 
